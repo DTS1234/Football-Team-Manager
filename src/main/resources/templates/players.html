@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/players/add">ADD NEW PLAYER</a></li>
+        </ul>
+    </nav>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+            <span th:if="${#lists.isEmpty(players)}">NO PLAYERS</span>
+            <tr th:each="player : ${players}" th:if="${not #lists.isEmpty(players)}">
+                <td th:text="${player.playerId}"></td>
+                <td th:text="${player.name}"></td>
+                <td th:text="${player.surname}"></td>
+                <td>
+
+                    <a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a>
+
+                </td>
+                <td><a href="">update</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
