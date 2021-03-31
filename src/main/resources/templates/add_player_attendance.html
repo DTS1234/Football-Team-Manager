@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Add player form</h1>
+
+<form action="#" th:action="@{/trainings/{id}/attendance/add(id=${training.trainingId})}" th:object="${players}" method="POST">
+    <div class="container">
+
+        <p><strong>Select Players(Multiple):</strong>
+            <select multiple="multiple" th:field="*{playerList}">
+
+                <option th:each="player : ${predefinedPlayers}"
+                        th:value="${player.playerId}"
+                        th:text="${player.playerId} +' - '+ ${player.surname} + ${player.name}">
+
+            </select>
+        </p>
+        <input type="submit" value="submit"/>
+    </div>
+</form>
+
+
+</body>
+</html>

@@ -5,6 +5,8 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 /**
  * Player object.
@@ -18,5 +20,7 @@ public class Player {
     private Long playerId;
     private String name;
     private String surname;
+    @ManyToMany
+    private List<Training> trainingsDone;
 
 }

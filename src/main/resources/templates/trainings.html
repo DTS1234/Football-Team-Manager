@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/trainings/add">ADD NEW TRAINING</a></li>
+        </ul>
+    </nav>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Players present</th>
+            </tr>
+            <span th:if="${#lists.isEmpty(trainings)}">NO TRAININGS</span>
+            <tr th:each="training : ${trainings}" th:if="${not #lists.isEmpty(trainings)}">
+                <td th:text="${training.trainingId}"></td>
+                <td th:text="${training.date}"></td>
+                <td th:text="${training.type}"></td>
+                <td>
+
+                    <a th:href="@{/trainings/{id}/remove(id=${training.trainingId})}">remove</a>
+
+                </td>
+                <td><a href="">update</a></td>
+                <td><a th:href="@{/trainings/{id}/attendance(id=${training.trainingId})}">View attendance</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
