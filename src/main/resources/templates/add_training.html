@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
+<head th:insert="~{layout::bootstrap}">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>
-    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
+    <title>Add training</title>
 </head>
-<body>
-<h1>Add training form</h1>
-    <form action="#" th:action="@{/trainings/add}" th:object="${training}" method="post">
-        <p>Id: <input type="text" th:field="*{trainingId}"/></p>
-        <p>Date: <input type="datetime-local" th:field="*{date}"/></p>
-        <p>Type: <input type="text" th:field="*{type}"/></p>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-    </form>
+<body class="container-md">
+
+<div th:insert="~{layout :: navbar}"></div>
+
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-md-auto">
+        <br>
+        <h3>Add training form</h3>
+        <form class="form" th:action="@{/trainings/add}" th:object="${training}" method="post">
+
+            <div class="mb-3">
+                <label class="form-check-label" for="playerName">Date: </label>
+                <input class="form-control" type="datetime-local" th:field="*{date}" id="playerName"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="playerSurname">Type: </label>
+                <input class="form-control" type="text" th:field="*{type}" id="playerSurname"/>
+            </div>
+
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+    <div class="col-sm"></div>
+</div>
+<br>
+<hr>
+<div th:insert="~{layout :: footer}"></div>
+
+
 </body>
 </html>

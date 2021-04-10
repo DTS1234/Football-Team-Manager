@@ -1,55 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{layout::bootstrap}">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+    <title>Players</title>
 </head>
-<body>
+<body class="container-md">
 
-    <nav>
-        <ul>
-            <li><a href="/players/add">ADD NEW PLAYER</a></li>
-        </ul>
-    </nav>
+    <div th:insert="~{layout :: navbar}"></div>
 
-    <table>
-        <tbody>
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm"></div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/players/add">ADD NEW PLAYER</a></button>
+        </div>
+        <div class="col-sm"></div>
+
+    </div>
+    <br>
+    <br>
+
+    <table class="table">
+
+        <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Remove</th>
+                <th>Update</th>
             </tr>
-            <span th:if="${#lists.isEmpty(players)}">NO PLAYERS</span>
+        </thead>
+
+        <tbody>
             <tr th:each="player : ${players}" th:if="${not #lists.isEmpty(players)}">
                 <td th:text="${player.playerId}"></td>
                 <td th:text="${player.name}"></td>
                 <td th:text="${player.surname}"></td>
-                <td>
-
-                    <a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a>
-
-                </td>
+                <td><a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a></td>
                 <td><a href="">update</a></td>
             </tr>
         </tbody>
     </table>
+
+    <br>
+    <hr>
+
+    <div th:insert="~{layout :: footer}"></div>
 
 </body>
 </html>

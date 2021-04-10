@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="~{layout::bootstrap}">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+    <title>Trainings</title>
 </head>
-<body>
+<body class="container-md">
 
-    <nav>
-        <ul>
-            <li><a href="/trainings/add">ADD NEW TRAINING</a></li>
-        </ul>
-    </nav>
+<div th:insert="~{layout :: navbar}"></div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Players present</th>
-            </tr>
-            <span th:if="${#lists.isEmpty(trainings)}">NO TRAININGS</span>
-            <tr th:each="training : ${trainings}" th:if="${not #lists.isEmpty(trainings)}">
-                <td th:text="${training.trainingId}"></td>
-                <td th:text="${training.date}"></td>
-                <td th:text="${training.type}"></td>
-                <td>
+<br>
+<br>
+<div class="row">
 
-                    <a th:href="@{/trainings/{id}/remove(id=${training.trainingId})}">remove</a>
+    <div class="col-sm"></div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/trainings/add">ADD NEW TRAINING</a></button>
+    </div>
+    <div class="col-sm"></div>
 
-                </td>
-                <td><a href="">update</a></td>
-                <td><a th:href="@{/trainings/{id}/attendance(id=${training.trainingId})}">View attendance</a></td>
-            </tr>
-        </tbody>
-    </table>
+</div>
+<br>
+<br>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Remove</th>
+            <th>Update</th>
+            <th>View Attendance</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="training : ${trainings}" th:if="${not #lists.isEmpty(trainings)}">
+            <td th:text="${training.date}"></td>
+            <td th:text="${training.type}"></td>
+            <td>
+                <a th:href="@{/trainings/{id}/remove(id=${training.trainingId})}">remove</a>
+            </td>
+            <td><a href="">update</a></td>
+            <td><a th:href="@{/trainings/{id}/attendance(id=${training.trainingId})}">View attendance</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<hr>
+
+<div th:insert="~{layout :: footer}"></div>
+
 
 </body>
 </html>

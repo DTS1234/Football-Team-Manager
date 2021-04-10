@@ -1,6 +1,6 @@
 package uep.football.manager.domain;
 
-public class Trainer {
+public class Coach {
 
     private Long trainerId;
     private String trainerName;

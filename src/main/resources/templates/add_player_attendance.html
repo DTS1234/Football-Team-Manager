@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
+<head th:insert="~{layout::bootstrap}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<h1>Add player form</h1>
 
-<form action="#" th:action="@{/trainings/{id}/attendance/add(id=${training.trainingId})}" th:object="${players}" method="POST">
-    <div class="container">
+<body class="container-md">
 
-        <p><strong>Select Players(Multiple):</strong>
-            <select multiple="multiple" th:field="*{playerList}">
+    <div th:insert="~{layout :: navbar}"></div>
 
-                <option th:each="player : ${predefinedPlayers}"
-                        th:value="${player.playerId}"
-                        th:text="${player.playerId} +' - '+ ${player.surname} + ${player.name}">
 
-            </select>
-        </p>
-        <input type="submit" value="submit"/>
+    <div class="row">
+
+        <div class="col-sm"></div>
+        <div class="col-sm">
+            <br>
+            <h3>Add attendance</h3>
+            <form class="form" th:action="@{/trainings/{id}/attendance/add(id=${training.trainingId})}" th:object="${players}" method="POST">
+
+                <div class="mb-3">
+
+                    <select class="form-select form-select-lg mb-3" multiple aria-label="multiple select example" th:field="*{playerList}">
+
+                        <option th:each="player : ${predefinedPlayers}"
+                                th:value="${player.playerId}"
+                                th:text="${player.playerId} +' - '+ ${player.surname} + ' ' + ${player.name}">
+
+                    </select>
+
+                    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-sm"></div>
+
     </div>
-</form>
 
+    <br>
+    <hr>
+
+<div th:insert="~{layout :: footer}"></div>
 
 </body>
 </html>

@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Welcome to football manager.</h1>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{layout::bootstrap}">
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
 
-    <nav>
-        <ul>
-            <li><a href="/players">PLAYERS</a></li>
-            <li><a href="/season">SEASON</a></li>
-            <li><a href="/trainings">TRAININGS</a></li>
-        </ul>
-    </nav>
+    <body class="container-md">
 
-</body>
+        <div th:insert="~{layout :: navbar}"></div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md-auto"><h1>Welcome to football manager.</h1></div>
+            <div class="col-md"></div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div th:each="news, stat : ${newsList}">
+                <h2 th:text="${news.subject}"></h2>
+                <p th:text="${news.content}"></p>
+                <span class="badge bg-secondary" th:text="'Posted: ' + ${news.dateTime}">Posted 2012-08-02 20:47:04</span>
+                <hr th:if="${!stat.last}"><br>
+            </div>
+        </div>
+
+        <hr>
+        <div th:insert="~{layout :: footer}"></div>
+    </body>
+
 </html>
