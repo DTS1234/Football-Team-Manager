@@ -2,6 +2,7 @@ package uep.football.manager.domain;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ public class News {
     @GeneratedValue
     private Long id;
     private String subject;
+    @Column(length = 1000)
     private String content;
     private LocalDateTime dateTime;
 
