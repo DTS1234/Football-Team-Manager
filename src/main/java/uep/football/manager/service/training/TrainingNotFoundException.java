@@ -1,7 +1,7 @@
 package uep.football.manager.service.training;
 
 /**
- * @author akazmierczak
+ * 
  * @date 31.03.2021
  */
 public class TrainingNotFoundException extends RuntimeException {

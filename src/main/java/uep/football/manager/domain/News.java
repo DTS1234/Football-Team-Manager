@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- * @author akazmierczak
+ * 
  * @date 10.04.2021
  */
 @Data

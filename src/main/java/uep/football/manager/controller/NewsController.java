@@ -15,7 +15,7 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
- * @author akazmierczak
+ * 
  * @date 10.04.2021
  */
 @Controller

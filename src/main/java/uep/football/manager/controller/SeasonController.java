@@ -9,7 +9,7 @@ import uep.football.manager.domain.Match;
 import uep.football.manager.service.season.MatchService;
 
 /**
- * @author akazmierczak
+ * 
  * @date 11.04.2021
  */
 @Controller

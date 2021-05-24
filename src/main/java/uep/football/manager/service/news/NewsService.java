@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author akazmierczak
+ * 
  * @date 10.04.2021
  */
 @Service

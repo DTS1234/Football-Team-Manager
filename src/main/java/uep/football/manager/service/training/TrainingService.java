@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author akazmierczak
+ * 
  * @date 31.03.2021
  */
 @Slf4j
