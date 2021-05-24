@@ -1,4 +1,4 @@
-package uep.football.manager.services.training;
+package uep.football.manager.service.training;
 
 import org.springframework.web.servlet.ModelAndView;
 

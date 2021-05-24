@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title th:text="Template"></title>
+</head>
+<body>
+
+<div th:insert="~{fragments::navbar}">
+</div>
+
+<div class="row">
+
+    <div class="col-sm">
+    </div>
+
+    <div class="col-md-auto">
+        <br>
+        <h3>Edit data: </h3>
+
+        <form class="form" th:action="@{'/manager/' + ${player.playerId} + '/edit'}" th:object="${player}" method="post">
+
+            <div class="mb-3">
+                <label class="form-check-label" for="injury">Injured: </label>
+                <select class="form-control" th:field="*{injured}" id="injury">
+                    <option value="true">TRUE</option>
+                    <option value="false">FALSE</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="suspended">Suspended: </label>
+                <select class="form-control" th:field="*{suspended}" id="suspended">
+                    <option value="true">TRUE</option>
+                    <option value="false">FALSE</option>
+                </select>
+            </div>
+
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+    <div class="col-sm">
+    </div>
+
+</div>
+<br>
+<hr>
+
+<div th:insert="~{fragments::footer}">
+</div>
+
+</body>
+</html>

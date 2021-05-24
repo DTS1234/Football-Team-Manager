@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Player details</title>
+</head>
+<body class="container-md">
+
+<div th:insert="fragments::navbar"></div>
+
+<br>
+<h2 th:text="'Details for : ' + ${player.name} + ' ' + ${player.surname}"></h2>
+<br>
+
+<p th:text="'Rating: ' + ${player.rating} "></p>
+<p th:text="'Injured: ' + ${player.isInjured} "></p>
+<p th:text="'Susspended: ' + ${player.isSuspended} "></p>
+<p th:text="'Position: ' + ${player.position} "></p>
+
+<br>
+<h4>Basic data: </h4>
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <th>Edit</th>
+    </tr>
+
+    <tr>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.surname}"></td>
+        <td th:text="${player.age}"></td>
+        <td th:text="${player.height} + 'cm'"></td>
+        <td th:text="${player.weight} + 'kg'"></td>
+        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update'">update</a></td>
+    </tr>
+
+</table>
+
+<hr>
+<h4>Statistics: </h4>
+<table class="table">
+
+    <tr>
+        <th>Games played</th>
+        <th>Assists</th>
+        <th>Goals</th>
+        <th>Pass percentage</th>
+        <th>Interceptions</th>
+        <th>Yellow Cards</th>
+        <th>Red Cards</th>
+        <th>Edit</th>
+    </tr>
+
+    <tr>
+        <td th:text="${player.gamesPlayed}"></td>
+        <td th:text="${player.assists}"></td>
+        <td th:text="${player.goalsScored}"></td>
+        <td th:text="${player.passPercentage} + '%'"></td>
+        <td th:text="${player.interceptions}"></td>
+        <td th:text="${player.yellowCards}"></td>
+        <td th:text="${player.redCards}"></td>
+        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update/statistics'">update stats</a></td>
+    </tr>
+
+</table>
+
+<hr>
+<h4>Test results: </h4>
+<table class="table">
+
+    <tr>
+        <th>Vertical jump</th>
+        <th>Sprint 60 m</th>
+        <th>Beep test</th>
+        <th>Push ups in row</th>
+        <th>Date</th>
+        <th>Edit</th>
+    </tr>
+
+    <tr>
+        <td th:text="${player.verticalJump}"></td>
+        <td th:text="${player.sprint60m}"></td>
+        <td th:text="${player.beepTest}"></td>
+        <td th:text="${player.pushUpsInRow}"></td>
+        <td th:text="${player.lastTestDate}"></td>
+        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update/test'">update test results</a></td>
+    </tr>
+
+</table>
+
+<h4>Trainings attendance: </h4>
+<table class="table">
+
+    <tr>
+        <th>Training date:</th>
+        <th>Was present:</th>
+    </tr>
+
+    <tr th:each="training : ${trainings}">
+        <td th:text="${training.date.toLocalDate().toString()}"></td>
+        <td th:if="${player.trainingsDone.contains(training)}">True</td>
+        <td th:if="${!player.trainingsDone.contains(training)}">False</td>
+    </tr>
+
+</table>
+<div th:insert="fragments::footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title th:text="Template"></title>
+</head>
+<body class="container-md">
+<div th:insert="~{fragments::navbar}">
+</div>
+
+<br>
+<h2 style="text-align: center">Coach panel</h2>
+<br>
+
+<div class="row">
+
+    <div class="col-sm"></div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/coach/attendance">FILTER
+            BY ATTENDANCE</a></button>
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/coach/goals">FILTER BY
+            GOALS</a></button>
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/coach/assists">FILTER
+            BY ASSISTS</a></button>
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/coach/yellow">FILTER BY
+            YELLOW CARDS</a></button>
+    </div>
+    <div class="col-md-auto">
+        <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/coach/red">FILTER BY
+            RED CARDS</a></button>
+    </div>
+    <div class="col-sm"></div>
+
+</div>
+<br>
+<br>
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Yellow</th>
+        <th>Red</th>
+        <th>Attendance</th>
+        <th>Pick place in squad</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="player : ${players}" th:if="${not #lists.isEmpty(players)}">
+        <td th:text="${player.playerId}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.surname}"></td>
+        <td th:text="${player.goalsScored}"></td>
+        <td th:text="${player.assists}"></td>
+        <td th:text="${player.yellowCards}"></td>
+        <td th:text="${player.redCards}"></td>
+        <td th:text="${'attented: ' + player.trainingsDone.size()}"></td>
+        <td>
+            <form th:action="@{'/coach/' + ${player.playerId}}" method="post" th:object="${position}">
+                <label for="position">Pick position: </label>
+                <select id="position" name="position">
+                    <option th:selected="${#strings.equals(player.position, 'gk')}" value="gk">GK</option>
+                    <option th:selected="${#strings.equals(player.position, 'lb')}" value="lb">LB</option>
+                    <option th:selected="${#strings.equals(player.position, 'cb1')}" value="cb1">CB</option>
+                    <option th:selected="${#strings.equals(player.position, 'cb2')}" value="cb2">CB</option>
+                    <option th:selected="${#strings.equals(player.position, 'rb')}" value="rb">RB</option>
+                    <option th:selected="${#strings.equals(player.position, 'lm')}" value="lm">LM</option>
+                    <option th:selected="${#strings.equals(player.position, 'cm1')}" value="cm1">CM</option>
+                    <option th:selected="${#strings.equals(player.position, 'cm2')}" value="cm2">CM</option>
+                    <option th:selected="${#strings.equals(player.position, 'rm')}" value="rm">RM</option>
+                    <option th:selected="${#strings.equals(player.position, 'st1')}" value="st1">ST</option>
+                    <option th:selected="${#strings.equals(player.position, 'st2')}" value="st2">ST</option>
+                    <option th:selected="${#strings.equals(player.position, 'bench')}" value="bench">BENCH</option>
+                </select>
+                <button class="btn btn-success" style="margin-left: 3px;" type="submit">SUBMIT</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<h2 style="text-align: center">Squad</h2>
+<br>
+
+<div class="container-sm" style="border: lavender 1px solid; border-radius: 25px;">
+    <div class="row" style="background-color: mediumseagreen; height: 45px;">
+        <div class="col-md"></div>
+        <div class="col-md"></div>
+        <div class="col-md" th:text="${squad.gk}" style="text-align: center; font-size: 25px; color: white;">GK</div>
+        <div class="col-md"></div>
+        <div class="col-md"></div>
+    </div>
+
+    <div class="row">
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green; text-align: center; color: white; font-size: 35px;">DEFENSE
+        </div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+    </div>
+
+    <div class="row" style="background-color: mediumseagreen;height: 45px;">
+        <div class="col" th:text="${squad.lb}" style="text-align: center; font-size: 25px; color: white;">lb</div>
+        <div class="col" th:text="${squad.cb1}" style="text-align: center; font-size: 25px; color: white;">cb</div>
+        <div class="col" th:text="${squad.cb2}" style="text-align: center; font-size: 25px; color: white;">cb</div>
+        <div class="col" th:text="${squad.rb}" style="text-align: center; font-size: 25px; color: white;">rb</div>
+    </div>
+
+    <div class="row">
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green; text-align: center; color: white; font-size: 35px;">MIDFIELD
+        </div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+    </div>
+
+    <div class="row" style="background-color: mediumseagreen;height: 45px;">
+        <div class="col" th:text="${squad.lm}" style="text-align: center; font-size: 25px; color: white;">lm</div>
+        <div class="col" th:text="${squad.cm1}" style="text-align: center; font-size: 25px; color: white;">cm</div>
+        <div class="col" th:text="${squad.cm2}" style="text-align: center; font-size: 25px; color: white;">cm</div>
+        <div class="col" th:text="${squad.rm}" style="text-align: center; font-size: 25px; color: white;">rm</div>
+    </div>
+
+    <div class="row">
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green; text-align: center; color: white; font-size: 35px;">ATTACK
+        </div>
+        <div class="col" style="background-color: green"></div>
+        <div class="col" style="background-color: green"></div>
+    </div>
+
+    <div class="row" style="background-color: mediumseagreen;height: 45px;">
+        <div class="col"></div>
+        <div class="col" th:text="${squad.st1}" style="text-align: center; font-size: 25px; color: white;">st</div>
+        <div class="col" th:text="${squad.st2}" style="text-align: center; font-size: 25px; color: white;">st</div>
+        <div class="col"></div>
+    </div>
+</div>
+<br>
+<hr>
+<div th:insert="~{fragments::footer}"></div>
+
+</body>
+</html>

@@ -8,8 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import uep.football.manager.domain.PlayerList;
 import uep.football.manager.domain.Training;
 import uep.football.manager.repositories.TrainingRepository;
-import uep.football.manager.services.training.TrainingAttendanceService;
-import uep.football.manager.services.training.TrainingService;
+import uep.football.manager.service.training.TrainingAttendanceService;
+import uep.football.manager.service.training.TrainingService;
 
 import java.util.List;
 

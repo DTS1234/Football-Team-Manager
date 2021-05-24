@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{layout::bootstrap}">
+<head th:insert="~{fragments::bootstrap}">
     <meta charset="UTF-8">
     <title>Trainings</title>
 </head>
 <body class="container-md">
 
-<div th:insert="~{layout :: navbar}"></div>
+<div th:insert="~{fragments :: navbar}"></div>
 
 <br>
 <br>
@@ -36,7 +36,7 @@
 
     <tbody>
         <tr th:each="training : ${trainings}" th:if="${not #lists.isEmpty(trainings)}">
-            <td th:text="${training.date}"></td>
+            <td th:text="${#temporals.format(training.date, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${training.type}"></td>
             <td>
                 <a th:href="@{/trainings/{id}/remove(id=${training.trainingId})}">remove</a>
@@ -50,7 +50,7 @@
 <br>
 <hr>
 
-<div th:insert="~{layout :: footer}"></div>
+<div th:insert="~{fragments :: footer}"></div>
 
 
 </body>

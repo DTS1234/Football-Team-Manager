@@ -1,4 +1,4 @@
-package uep.football.manager.services.training;
+package uep.football.manager.service.training;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +42,11 @@ public class TrainingService {
         modelAndView.addObject("trainings", trainingList);
 
         return modelAndView;
+    }
+
+    public List<Training> getAllTrainings()
+    {
+        return trainingRepository.findAll();
     }
 
 

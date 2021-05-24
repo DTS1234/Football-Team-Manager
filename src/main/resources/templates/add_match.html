@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Add Match</title>
+</head>
+<body class="container-md">
+
+<div th:insert="~{fragments :: navbar}"></div>
+
+<div class="row">
+
+    <div class="col-sm">
+    </div>
+
+    <div class="col-md-auto">
+        <br>
+        <h3>Add match data form:</h3>
+
+        <form class="form" action="#" th:action="@{/season/add}" th:object="${match}" method="post">
+
+            <div class="mb-3">
+                <label class="form-check-label" for="home">Host: </label>
+                <input class="form-control" type="text" th:field="*{home}" id="home"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="goalsLost">Guest: </label>
+                <input class="form-control" type="text" th:field="*{guest}" id="guest" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="goalsScored">Goals hosts: </label>
+                <input class="form-control" type="number" th:field="*{goalsScored}" id="goalsScored"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="goalsLost">Goals guests: </label>
+                <input class="form-control" type="number" th:field="*{goalsLost}" id="goalsLost" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-check-label" for="date">Date: </label>
+                <input class="form-control" type="datetime-local" th:field="*{date}" id="date"/>
+            </div>
+
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+    <div class="col-sm">
+    </div>
+
+</div>
+<br>
+<hr>
+<div th:insert="~{fragments::footer}"></div>
+
+</body>
+</html>
+

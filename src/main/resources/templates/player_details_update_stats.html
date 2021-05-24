@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Update players details</title>
+</head>
+<body class="container-md">
+
+<h2>Edit player statistics: </h2>
+
+<form th:object="${player}" th:action="'/players/details/' + ${player.playerId} + '/update/statistics'" method="post">
+
+    <div class="form-group">
+        <label for="gamesPlayed">Games played:</label>
+        <input class="form-control" id="gamesPlayed" type="number" placeholder="..." th:field="*{gamesPlayed}">
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Assists: </label>
+        <input class="form-control" id="weight" type="number" placeholder="..." th:field="*{assists}">
+    </div>
+
+    <div class="form-group">
+        <label for="goalsScored">Goals scored: </label>
+        <input class="form-control" id="goalsScored" type="number" placeholder="goalsScored..."
+               th:field="*{goalsScored}">
+    </div>
+
+    <div class="form-group">
+        <label for="passPercentage">Pass percentage: </label>
+        <input class="form-control" id="passPercentage" type="number" placeholder="passPercentage..."
+               th:field="*{passPercentage}">
+    </div>
+
+    <div class="form-group">
+        <label for="interceptions">Interceptions: </label>
+        <input class="form-control" id="interceptions" type="number" placeholder="interceptions..."
+               th:field="*{interceptions}">
+    </div>
+
+    <div class="form-group">
+        <label for="yellowCards">Yellow cards: </label>
+        <input class="form-control" id="yellowCards" type="number" th:default="${player.yellowCards}" placeholder="redCards..."
+               th:field="*{yellowCards}">
+    </div>
+
+    <div class="form-group">
+        <label for="redCards">Red cards: </label>
+        <input class="form-control" id="redCards" type="number" th:default="${player.redCards}" placeholder="redCards..."
+               th:field="*{redCards}">
+    </div>
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</form>
+</body>
+</html>

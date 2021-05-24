@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Update players details</title>
+</head>
+<body class="container-md">
+
+<h2>Edit player details: </h2>
+
+<form th:object="${player}" th:action="'/players/details/' + ${player.playerId} + '/update'" method="post">
+
+    <div class="form-group">
+        <label for="height">Height</label>
+        <input class="form-control" id="height" type="number" placeholder="in cms ..." th:field="*{height}">
+    </div>
+
+    <div class="form-group">
+        <label for="weight">Weight</label>
+        <input class="form-control" id="weight" type="number" placeholder="in kgs..." th:field="*{weight}">
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input  class="form-control" id="age" type="number" placeholder="age..." th:field="*{age}">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</form>
+</body>
+</html>

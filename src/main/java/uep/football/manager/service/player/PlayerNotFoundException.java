@@ -1,4 +1,4 @@
-package uep.football.manager.services.player;
+package uep.football.manager.service.player;
 
 /**
  * @author akazmierczak

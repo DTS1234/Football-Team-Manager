@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title th:text="Template"></title>
+</head>
+<body class="container-md">
+
+<div th:insert="~{fragments::navbar}"></div>
+<br>
+<h2 style="text-align: center">Manager panel</h2>
+<br>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Injured</th>
+        <th>Suspended</th>
+        <th>Edit</th>
+    </tr>
+    <tr th:each="player : ${players}">
+        <td th:text="${player.playerId}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.surname}"></td>
+        <td th:text="${player.injured}"></td>
+        <td th:text="${player.suspended}"></td>
+        <td><a th:href="@{'/manager/' + ${player.playerId} + '/edit'}">EDIT</a></td>
+    </tr>
+</table>
+
+<div th:insert="~{fragments::footer}">
+</div>
+
+</body>
+</html>

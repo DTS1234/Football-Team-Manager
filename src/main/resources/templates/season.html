@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head  th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Season</title>
+</head>
+<body class="container-md">
+
+    <div th:insert="~{fragments :: navbar}"></div>
+
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm"></div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/season/add">ADD MATCH</a></button>
+        </div>
+        <div class="col-sm"></div>
+
+    </div>
+    <br>
+    <br>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Game</th>
+                <th>Result</th>
+                <th>Date</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="match : ${matches}" th:if="${not #lists.isEmpty(matches)}">
+                <td th:text="${match.id}"></td>
+                <td th:text="${match.home} +' vs '+ ${match.guest}"></td>
+                <td th:text="${match.goalsScored} + ' : ' +${match.goalsLost}"></td>
+                <td th:text="${#temporals.format(match.date, 'dd-MM-yyyy HH:mm')}"></td>
+
+                <td><a th:href="@{/season/removeGame/{id}(id=${match.id})}">remove</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <hr>
+
+    <table class="table">
+        <tr class="col">
+            <th>#</th>
+            <th>Team</th>
+            <th>GP</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GS</th>
+            <th>GL</th>
+            <th>PTS</th>
+        </tr>
+        <tr class="wpos" th:each="team,iter : ${teams}">
+            <td th:text="${iter.count}"></td>
+            <td th:text="${team.name}"></td>
+            <td th:text="${team.gp}"></td>
+            <td th:text="${team.w}"></td>
+            <td th:text="${team.d}"></td>
+            <td th:text="${team.l}"></td>
+            <td th:text="${team.gs}"></td>
+            <td th:text="${team.gl}"></td>
+            <td th:text="${team.pts}"></td>
+        </tr>
+    </table>
+
+    <div th:insert="~{fragments :: footer}"></div>
+
+</body>
+</html>

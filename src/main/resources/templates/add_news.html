@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="~{fragments::bootstrap}">
+  <meta charset="UTF-8">
+  <title>Add Match</title>
+</head>
+
+<body class="container-md">
+
+<div th:insert="~{fragments :: navbar}"></div>
+
+<div class="row">
+
+  <div class="col-sm">
+  </div>
+
+  <div class="col-md-auto">
+    <br>
+    <h3>Add news form</h3>
+
+    <form class="form" action="#" th:action="@{/add/news}" th:object="${news}" method="post">
+
+      <div class="mb-3">
+        <label class="form-check-label" for="playerName">Subject: </label>
+        <input class="form-control" type="text" th:field="*{subject}" id="playerName"/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-check-label" for="playerSurname">Content: </label>
+        <input class="form-control" type="text" th:field="*{content}" id="playerSurname"/>
+      </div>
+
+      <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+
+  <div class="col-sm">
+  </div>
+
+</div>
+
+<div th:insert="~{fragments::footer}"></div>
+
+</body>
+</html>

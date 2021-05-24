@@ -1,4 +1,4 @@
-package uep.football.manager.services.training;
+package uep.football.manager.service.training;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -87,7 +87,16 @@ public class TrainingAttendanceService {
 
             attendance.addAll(playersToBeAdded.getPlayerList());
             training.setPlayers(attendance);
-            trainingRepository.save(training);
+            var saved = trainingRepository.save(training);
+
+            attendance.forEach(
+                    player -> {
+                        List<Training> trainings = player.getTrainingsDone();
+                        trainings.add(saved);
+                        player.setTrainingsDone(trainings);
+                        playerRepository.save(player);
+                    }
+            );
 
             modelAndView.addObject("training", training);
             modelAndView.addObject("players", training.getPlayers());

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{layout::bootstrap}">
+<head th:insert="~{fragments::bootstrap}">
     <meta charset="UTF-8">
     <title>Players</title>
 </head>
 <body class="container-md">
 
-    <div th:insert="~{layout :: navbar}"></div>
+    <div th:insert="~{fragments :: navbar}"></div>
 
     <br>
     <br>
@@ -31,6 +31,7 @@
                 <th>Surname</th>
                 <th>Remove</th>
                 <th>Update</th>
+                <th>Details</th>
             </tr>
         </thead>
 
@@ -41,6 +42,7 @@
                 <td th:text="${player.surname}"></td>
                 <td><a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a></td>
                 <td><a href="">update</a></td>
+                <td><a th:href="@{/players/details/{id}(id=${player.playerId})}">details</a></td>
             </tr>
         </tbody>
     </table>
@@ -48,7 +50,7 @@
     <br>
     <hr>
 
-    <div th:insert="~{layout :: footer}"></div>
+    <div th:insert="~{fragments :: footer}"></div>
 
 </body>
 </html>

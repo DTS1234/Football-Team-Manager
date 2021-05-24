@@ -1,4 +1,4 @@
-package uep.football.manager.services.training;
+package uep.football.manager.service.training;
 
 /**
  * @author akazmierczak

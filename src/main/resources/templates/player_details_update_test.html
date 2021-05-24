@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments::bootstrap}">
+    <meta charset="UTF-8">
+    <title>Update players details</title>
+</head>
+<body class="container-md">
+
+<h2>Edit player statistics: </h2>
+
+<form th:object="${player}" th:action="'/players/details/' + ${player.playerId} + '/update/test'" method="post">
+
+    <div class="form-group">
+        <label for="sprint60m">Sprint 60 m</label>
+        <input class="form-control" id="sprint60m" type="number" placeholder="in seconds ..." th:field="*{sprint60m}"
+               th:default="${player.sprint60m}">
+    </div>
+
+    <div class="form-group">
+        <label for="verticaljump">Vertical jump</label>
+        <input class="form-control" id="verticaljump" type="number" placeholder="in cm..." th:field="*{verticalJump}"
+               th:default="${player.verticalJump}">
+    </div>
+
+    <div class="form-group">
+        <label for="beepTest">Beep test</label>
+        <input class="form-control" id="beepTest" type="number" placeholder="number of distances run"
+               th:field="*{beepTest}" th:default="${player.beepTest}">
+    </div>
+
+    <div class="form-group">
+        <label for="pushUps">Push up in a row</label>
+        <input class="form-control" id="pushUps" type="number" placeholder="number of distances run"
+               th:field="*{pushUpsInRow}" th:default="${player.pushUpsInRow}">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</form>
+</body>
+</html>

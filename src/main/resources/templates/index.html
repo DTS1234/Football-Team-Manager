@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:insert="~{layout::bootstrap}">
+    <head th:insert="~{fragments::bootstrap}">
         <meta charset="UTF-8">
         <title>Home</title>
     </head>
 
     <body class="container-md">
 
-        <div th:insert="~{layout :: navbar}"></div>
+        <div th:insert="~{fragments :: navbar}"></div>
 
         <br>
         <br>
@@ -18,18 +18,33 @@
             <div class="col-md"></div>
         </div>
 
-        <br>
+        <div>
+            <br>
+            <br>
+            <div class="row">
+
+                <div class="col-sm"></div>
+                <div class="col-md-auto">
+                    <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/add/news">ADD NEW POST</a></button>
+                </div>
+                <div class="col-sm"></div>
+
+            </div>
+            <br>
+            <br>
+        </div>
+
         <div class="row">
             <div th:each="news, stat : ${newsList}">
                 <h2 th:text="${news.subject}"></h2>
                 <p th:text="${news.content}"></p>
-                <span class="badge bg-secondary" th:text="'Posted: ' + ${news.dateTime}">Posted 2012-08-02 20:47:04</span>
+                <span class="badge bg-secondary" th:text="'Posted: ' +  ${#temporals.format(news.dateTime, 'dd-MM-yyyy HH:mm')}">Posted 2012-08-02 20:47:04</span>
                 <hr th:if="${!stat.last}"><br>
             </div>
         </div>
 
         <hr>
-        <div th:insert="~{layout :: footer}"></div>
+        <div th:insert="~{fragments :: footer}"></div>
     </body>
 
 </html>

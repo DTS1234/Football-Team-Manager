@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:insert="~{layout::bootstrap}">
+<head th:insert="~{fragments::bootstrap}">
     <meta charset="UTF-8">
     <title>Add training</title>
 </head>
 <body class="container-md">
 
-<div th:insert="~{layout :: navbar}"></div>
+<div th:insert="~{fragments :: navbar}"></div>
 
 <div class="row">
     <div class="col-sm"></div>
@@ -16,8 +16,8 @@
         <form class="form" th:action="@{/trainings/add}" th:object="${training}" method="post">
 
             <div class="mb-3">
-                <label class="form-check-label" for="playerName">Date: </label>
-                <input class="form-control" type="datetime-local" th:field="*{date}" id="playerName"/>
+                <label class="form-check-label" for="date">Date: </label>
+                <input class="form-control" type="datetime-local" th:field="*{date}" id="date"/>
             </div>
 
             <div class="mb-3">
@@ -33,7 +33,7 @@
 </div>
 <br>
 <hr>
-<div th:insert="~{layout :: footer}"></div>
+<div th:insert="~{fragments :: footer}"></div>
 
 
 </body>
