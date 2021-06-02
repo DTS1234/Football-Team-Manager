@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Players</title>
 </head>
-<body class="container-md">
+
+<div th:if="${!@getLoginState.loggedIn}">
+    <div th:insert="~{fragments :: navbar}"></div>
+    <body class="container-md">
+    <div th:insert="~{fragments::login}"></div>
+    </body>
+</div>
+
+<body class="container-md" th:if="${@getLoginState.loggedIn}">
 
     <div th:insert="~{fragments :: navbar}"></div>
 
     <br>
     <br>
-    <div class="row">
+    <div class="row" th:if="${@getLoginState.isManger or @getLoginState.isCoach}">
 
         <div class="col-sm"></div>
         <div class="col-md-auto">
@@ -29,8 +37,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Remove</th>
-                <th>Update</th>
+                <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Remove</th>
                 <th>Details</th>
             </tr>
         </thead>
@@ -40,8 +47,7 @@
                 <td th:text="${player.playerId}"></td>
                 <td th:text="${player.name}"></td>
                 <td th:text="${player.surname}"></td>
-                <td><a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a></td>
-                <td><a href="">update</a></td>
+                <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a></td>
                 <td><a th:href="@{/players/details/{id}(id=${player.playerId})}">details</a></td>
             </tr>
         </tbody>

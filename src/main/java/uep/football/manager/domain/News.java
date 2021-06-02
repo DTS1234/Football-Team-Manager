@@ -21,4 +21,7 @@ public class News {
     private String content;
     private LocalDateTime dateTime;
 
+    @ManyToOne
+    private Club club;
+
 }

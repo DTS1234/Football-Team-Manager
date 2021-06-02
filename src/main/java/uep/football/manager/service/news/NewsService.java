@@ -2,9 +2,12 @@ package uep.football.manager.service.news;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uep.football.manager.domain.News;
 import uep.football.manager.repositories.NewsRepository;
+import uep.football.manager.service.auth.AuthService;
+import uep.football.manager.service.auth.LoginState;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -23,11 +26,22 @@ import java.util.stream.Collectors;
 public class NewsService {
 
     private final NewsRepository newsRepository;
+    private final AuthService authService;
+    private final LoginState loginState;
 
     public List<News> getAllNews()
     {
         List<News> all = newsRepository.findAll();
 
+        List<News> sorted = all.stream().sorted(Comparator.comparing(News::getDateTime)).collect(Collectors.toList());
+        Collections.reverse(sorted); // reversing to get latest on top
+
+        return sorted;
+    }
+
+    public List<News> getAllNewsForClub()
+    {
+        List<News> all = newsRepository.findByClub(authService.getCurrentLoggedInUser().getClub());
         List<News> sorted = all.stream().sorted(Comparator.comparing(News::getDateTime)).collect(Collectors.toList());
         Collections.reverse(sorted); // reversing to get latest on top
 

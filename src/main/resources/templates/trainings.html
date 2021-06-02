@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Trainings</title>
 </head>
-<body class="container-md">
+
+<div th:if="${!@getLoginState.loggedIn}">
+    <div th:insert="~{fragments :: navbar}"></div>
+    <body class="container-md">
+    <div th:insert="~{fragments::login}"></div>
+    </body>
+</div>
+
+<body class="container-md" th:if="${@getLoginState.loggedIn}">
 
 <div th:insert="~{fragments :: navbar}"></div>
 
 <br>
 <br>
-<div class="row">
+<div class="row" th:if="${@getLoginState.isCoach}">
 
     <div class="col-sm"></div>
     <div class="col-md-auto">
@@ -28,8 +36,7 @@
         <tr>
             <th>Date</th>
             <th>Type</th>
-            <th>Remove</th>
-            <th>Update</th>
+            <th th:if="${@getLoginState.isCoach}">Remove</th>
             <th>View Attendance</th>
         </tr>
     </thead>
@@ -38,11 +45,10 @@
         <tr th:each="training : ${trainings}" th:if="${not #lists.isEmpty(trainings)}">
             <td th:text="${#temporals.format(training.date, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${training.type}"></td>
-            <td>
+            <td th:if="${@getLoginState.isCoach}">
                 <a th:href="@{/trainings/{id}/remove(id=${training.trainingId})}">remove</a>
             </td>
-            <td><a href="">update</a></td>
-            <td><a th:href="@{/trainings/{id}/attendance(id=${training.trainingId})}">View attendance</a></td>
+            <td ><a th:href="@{/trainings/{id}/attendance(id=${training.trainingId})}">View attendance</a></td>
         </tr>
     </tbody>
 </table>

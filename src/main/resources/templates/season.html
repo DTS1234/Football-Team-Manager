@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Season</title>
 </head>
-<body class="container-md">
+
+<div th:if="${!@getLoginState.loggedIn}">
+    <div th:insert="~{fragments :: navbar}"></div>
+    <body class="container-md">
+        <div th:insert="~{fragments::login}"></div>
+    </body>
+</div>
+
+<body class="container-md" th:if="${@getLoginState.loggedIn}">
 
     <div th:insert="~{fragments :: navbar}"></div>
 
     <br>
     <br>
-    <div class="row">
+    <div class="row" th:if="${@getLoginState.isManger or @getLoginState.isCoach}">
 
         <div class="col-sm"></div>
         <div class="col-md-auto">
@@ -30,7 +38,7 @@
                 <th>Game</th>
                 <th>Result</th>
                 <th>Date</th>
-                <th>Remove</th>
+                <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Remove</th>
             </tr>
         </thead>
 
@@ -41,7 +49,7 @@
                 <td th:text="${match.goalsScored} + ' : ' +${match.goalsLost}"></td>
                 <td th:text="${#temporals.format(match.date, 'dd-MM-yyyy HH:mm')}"></td>
 
-                <td><a th:href="@{/season/removeGame/{id}(id=${match.id})}">remove</a></td>
+                <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="@{/season/removeGame/{id}(id=${match.id})}">remove</a></td>
             </tr>
         </tbody>
     </table>

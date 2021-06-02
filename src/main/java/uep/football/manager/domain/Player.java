@@ -43,6 +43,13 @@ public class Player {
 
     private double rating;
 
+    @ManyToOne
+    @JoinColumn(name = "club_id")
+    private Club club;
+
+    private String password;
+    private String username;
+
     @ManyToMany
     @JoinTable(name = "TRAINING_PLAYERS",
             joinColumns = @JoinColumn(name = "player_id"),

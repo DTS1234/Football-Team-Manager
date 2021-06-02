@@ -27,7 +27,7 @@
         <th>Age</th>
         <th>Height</th>
         <th>Weight</th>
-        <th>Edit</th>
+        <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Edit</th>
     </tr>
 
     <tr>
@@ -36,7 +36,7 @@
         <td th:text="${player.age}"></td>
         <td th:text="${player.height} + 'cm'"></td>
         <td th:text="${player.weight} + 'kg'"></td>
-        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update'">update</a></td>
+        <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="'/players/details/' + ${player.playerId}+ '/update'">update</a></td>
     </tr>
 
 </table>
@@ -53,7 +53,7 @@
         <th>Interceptions</th>
         <th>Yellow Cards</th>
         <th>Red Cards</th>
-        <th>Edit</th>
+        <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Edit</th>
     </tr>
 
     <tr>
@@ -64,7 +64,7 @@
         <td th:text="${player.interceptions}"></td>
         <td th:text="${player.yellowCards}"></td>
         <td th:text="${player.redCards}"></td>
-        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update/statistics'">update stats</a></td>
+        <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="'/players/details/' + ${player.playerId}+ '/update/statistics'">update stats</a></td>
     </tr>
 
 </table>
@@ -79,7 +79,7 @@
         <th>Beep test</th>
         <th>Push ups in row</th>
         <th>Date</th>
-        <th>Edit</th>
+        <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Edit</th>
     </tr>
 
     <tr>
@@ -88,7 +88,7 @@
         <td th:text="${player.beepTest}"></td>
         <td th:text="${player.pushUpsInRow}"></td>
         <td th:text="${player.lastTestDate}"></td>
-        <td><a th:href="'/players/details/' + ${player.playerId}+ '/update/test'">update test results</a></td>
+        <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="'/players/details/' + ${player.playerId}+ '/update/test'">update test results</a></td>
     </tr>
 
 </table>

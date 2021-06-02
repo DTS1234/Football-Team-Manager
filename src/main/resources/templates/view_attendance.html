@@ -10,7 +10,7 @@
 
     <br>
     <br>
-    <div class="row">
+    <div class="row" th:if="${@getLoginState.isCoach or @getLoginState.isManger}">
 
         <div class="col-sm"></div>
         <div class="col-md-auto">
@@ -29,8 +29,6 @@
             <th>Id</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Remove</th>
-            <th>Update</th>
         </tr>
         </thead>
 
@@ -39,8 +37,6 @@
             <td th:text="${player.playerId}"></td>
             <td th:text="${player.name}"></td>
             <td th:text="${player.surname}"></td>
-            <td><a href="#">remove</a></td>
-            <td><a href="#">update</a></td>
         </tr>
         </tbody>
     </table>
