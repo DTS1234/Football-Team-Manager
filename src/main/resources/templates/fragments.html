@@ -7,42 +7,67 @@
 
 <body>
 
-    <div th:fragment="bootstrap">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-                crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-              rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-              crossorigin="anonymous">
+<div th:fragment="bootstrap">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous">
+</div>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container-fluid">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/" th:text="#{home}">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="/players" th:text="#{players}">PLAYERS</a></li>
+            <li class="nav-item"><a class="nav-link" href="/season" th:text="#{season}">SEASON</a></li>
+            <li class="nav-item"><a class="nav-link" href="/trainings" th:text="#{trainings}">TRAININGS</a></li>
+            <li th:if="${@getLoginState.isManger}" class="nav-item"><a class="nav-link" href="/manager" th:text="#{manager}">MANAGER</a></li>
+            <li th:if="${@getLoginState.isCoach}" class="nav-item"><a class="nav-link" href="/coach" th:text="#{coach}">COACH</a></li>
+            <li th:if="${@getLoginState.loggedIn}" class="nav-item"><a class="nav-link" href="/logout" th:text="#{logout}">Logout</a></li>
+            <li th:if="${!@getLoginState.loggedIn}" class="nav-item"><a class="nav-link" href="/login" th:text="#{login}">Login</a></li>
+        </ul>
+
+        <span class="navbar-text">
+            <form class="form-inline" th:action="@{''}">
+                <button type="submit" th:name="lang" th:value="pl"><img th:src="@{/images/poland.png}" alt="no image" src="/poland.png"></button>
+                <button type="submit" th:name="lang" th:value="en_US"><img th:src="@{/images/united-states.png}" alt="no image" src="/united-states.png"></button>
+            </form>
+        </span>
+
+
     </div>
 
-    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+</nav>
 
-        <div class="container-fluid">
+<footer th:fragment="footer">
+    <p>Authors: Tomasz Kunicki, Franciszek Knez</p>
+    <p>Web Application Project UEP Project</p>
+</footer>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/">HOME</a></li>
-                <li class="nav-item"><a class="nav-link" href="/players">PLAYERS</a></li>
-                <li class="nav-item"><a class="nav-link" href="/season">SEASON</a></li>
-                <li class="nav-item"><a class="nav-link" href="/trainings">TRAININGS</a></li>
-                <li th:if="${@getLoginState.isManger}" class="nav-item"><a class="nav-link" href="/manager">MANAGER</a></li>
-                <li th:if="${@getLoginState.isCoach}" class="nav-item"><a class="nav-link" href="/coach">COACH</a></li>
-                <li th:if="${@getLoginState.loggedIn}" class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                <li th:if="${!@getLoginState.loggedIn}" class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-            </ul>
-
-        </div>
-
-    </nav>
-
-    <footer th:fragment="footer">
-        <p>Authors: Tomasz Kunicki, Franciszek Knez</p>
-        <p>Web Application Project UEP Project</p>
-    </footer>
-
-    <div th:fragment="login">
-        <h1>Login first !</h1>
-    </div>
+<div th:fragment="login" class="alert alert-danger mt-5">
+    <h2 style="text-align: center" th:text="#{loginWarn}"></h2>
+</div>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript" th:inline="javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+
+            console.log("on change !");
+
+            var selectedOption = $('#locales').val();
+            if (selectedOption !== '') {
+                window.location.replace('international?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 </html>

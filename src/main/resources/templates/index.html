@@ -14,14 +14,14 @@
 
     <body class="container-md" th:if="${@getLoginState.loggedIn}">
 
-        <div th:insert="~{fragments :: navbar}"></div>
+    <div th:insert="~{fragments :: navbar}"></div>
 
         <br>
         <br>
 
         <div class="row">
             <div class="col-md"></div>
-            <div class="col-md-auto"><h1>Welcome to football manager.</h1></div>
+            <div class="col-md-auto"><h1 th:text="#{welcome}">Welcome to football manager.</h1></div>
             <div class="col-md"></div>
         </div>
 
@@ -32,7 +32,7 @@
 
                 <div class="col-sm"></div>
                 <div class="col-md-auto">
-                    <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/add/news">ADD NEW POST</a></button>
+                    <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/add/news" th:text="#{post}">ADD NEW POST</a></button>
                 </div>
                 <div class="col-sm"></div>
 

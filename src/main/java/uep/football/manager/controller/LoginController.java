@@ -35,7 +35,7 @@ public class LoginController {
 
         authService.checkLogin(loginDTO);
 
-        var loginMv = new ModelAndView("index");
+        var loginMv = new ModelAndView("redirect:/");
         loginMv.addObject("newsList", newsService.getAllNews());
 
         return loginMv;

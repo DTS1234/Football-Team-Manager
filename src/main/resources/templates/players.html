@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments::bootstrap}">
-    <meta charset="UTF-8">
+    <meta charset = "ISO-8859-1"/>
     <title>Players</title>
 </head>
 
@@ -22,7 +22,7 @@
 
         <div class="col-sm"></div>
         <div class="col-md-auto">
-            <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/players/add">ADD NEW PLAYER</a></button>
+            <button class="btn btn-primary"><a style="text-decoration: none;color: aliceblue" href="/players/add" th:text="#{addplayer}">ADD NEW PLAYER</a></button>
         </div>
         <div class="col-sm"></div>
 
@@ -35,10 +35,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Remove</th>
-                <th>Details</th>
+                <th th:text="#{name}">Name</th>
+                <th th:text="#{surname}">Surname</th>
+                <th th:text="#{remove}" th:if="${@getLoginState.isCoach or @getLoginState.isManger}">Remove</th>
+                <th th:text="#{details}">Details</th>
             </tr>
         </thead>
 
@@ -47,8 +47,8 @@
                 <td th:text="${player.playerId}"></td>
                 <td th:text="${player.name}"></td>
                 <td th:text="${player.surname}"></td>
-                <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="@{/players/remove/{id}(id=${player.playerId})}">remove</a></td>
-                <td><a th:href="@{/players/details/{id}(id=${player.playerId})}">details</a></td>
+                <td th:if="${@getLoginState.isCoach or @getLoginState.isManger}"><a th:href="@{/players/remove/{id}(id=${player.playerId})}" th:text="#{remove}">remove</a></td>
+                <td><a th:href="@{/players/details/{id}(id=${player.playerId})}" th:text="#{details}">details</a></td>
             </tr>
         </tbody>
     </table>
